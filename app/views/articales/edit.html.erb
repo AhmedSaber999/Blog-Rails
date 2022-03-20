@@ -1,0 +1,19 @@
+<h1> Edit an articale </h1>
+
+<%= render "articales/validation_messages"%>
+
+<%= form_with(model: @articale, local: true) do |f| %>
+    <p>
+        <%= f.label :title %> <br />
+        <%= f.text_field :title %>
+    </p>
+    <p>
+        <%= f.label :description %> <br />
+        <%= f.text_area :description %>
+    </p>
+
+    <%= f.submit %>
+<% end %>
+
+
+<%= link_to 'Articales', articales_path %> | 
