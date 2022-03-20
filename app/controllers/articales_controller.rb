@@ -15,6 +15,7 @@ class ArticalesController < ApplicationController
 
   def create
     @articale = Articale.new(params.require(:articale).permit(:title, :description))
+    @articale.user = User.first
     if @articale.save
       flash[:notice] = 'Article was created successfully.'
       redirect_to articale_path(@articale) 
