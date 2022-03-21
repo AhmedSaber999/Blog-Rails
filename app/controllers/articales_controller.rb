@@ -2,8 +2,7 @@
 class ArticalesController < ApplicationController
   before_action :set_articale, only: [:edit, :update, :show, :destroy]
   def index
-    @articales = Articale.all
-    # render plain: "@22222222"
+    @articales = Articale.paginate(page: params[:page], per_page: 5)
   end
 
   def show
