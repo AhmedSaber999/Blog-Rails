@@ -1,6 +1,9 @@
 # Aricale Controller
 class ArticalesController < ApplicationController
   before_action :set_articale, only: [:edit, :update, :show, :destroy]
+  before_action :require_user, except: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+
   def index
     @articales = Articale.paginate(page: params[:page], per_page: 5)
   end
@@ -14,7 +17,7 @@ class ArticalesController < ApplicationController
 
   def create
     @articale = Articale.new(params.require(:articale).permit(:title, :description))
-    @articale.user = User.first
+    @articale.user = current_user
     if @articale.save
       flash[:notice] = 'Article was created successfully.'
       redirect_to articale_path(@articale) 
@@ -45,4 +48,12 @@ class ArticalesController < ApplicationController
   def set_articale
     @articale = Articale.find(params[:id])
   end
+
+  def require_same_user
+    if current_user != @articale.user
+      flash[:alert] = "You can only edit or delete your own article"
+      redirect_to @articale
+    end
+  end
+
 end

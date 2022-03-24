@@ -1,5 +1,10 @@
  <h1 class="text-center">Blog</h1>
 <div id="page-content">
+    <% if logged_in? %>
+        <div class="form-group justofy-content-center">
+            <%= link_to "Create new article", new_articale_path, class: "btn btn-primary border-0" %>
+        </div>
+    <% end %>  
     <div class="flickr_pagination">
         <%= will_paginate @articales, :container => false %>
     </div>

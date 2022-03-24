@@ -11,8 +11,10 @@
           </div>
           <div class="card-body">
             <div class="card-text text-left"><%= simple_format(@articale.description) %></div>
-            <%= link_to "Edit", edit_articale_path(@articale), class: "btn btn-outline-info" %>
-            <%= link_to "Delete", articale_path(@articale), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+            <% if logged_in? && @articale.user == current_user %>   
+              <%= link_to "Edit", edit_articale_path(@articale), class: "btn btn-outline-info" %>
+              <%= link_to "Delete", articale_path(@articale), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+            <% end %>          
           </div>
           <div class="card-footer text-muted">
             <small>Created <%= time_ago_in_words(@articale.created_at) %> ago, 
