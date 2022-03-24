@@ -17,7 +17,7 @@
       <ul class="navbar-nav ml-auto">
           <% if logged_in? %>
           <li class="nav-item">
-            <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
+            <%= link_to current_user.username , user_path(current_user), class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= button_to 'Logout', logout_path, class: "nav-link btn btn-outline-danger border-0", method: :delete %>

@@ -16,7 +16,7 @@
                         <div class="col">
                             <%= link_to "View", articale_path(articale), class: "btn btn-outline-success" %>
                         </div>
-                        <% if logged_in? && articale.user == current_user %>
+                        <% if logged_in? && (articale.user == current_user || current_user.admin?) %>
                             <div class="col">
                                 <%= link_to "Edit", edit_articale_path(articale), class: "btn btn-outline-info" %>
                             </div>
