@@ -8,6 +8,9 @@
                     <% if articale.user %>
                       by <%= link_to articale.user.username, user_path(articale.user) %>
                     <% end %>
+                      <% if articale.categories.any? %>
+                        <div class="mt-2"><%= render articale.categories %></div> 
+                      <% end %>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title"><%= link_to articale.title, articale_path(articale), class: "text-success" %></h5>

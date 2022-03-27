@@ -1,5 +1,11 @@
 <h1 class="text-center mt-4">Categories</h1>
 
+    <% if logged_in? && current_user.admin? %>
+        <div class="text-center">
+            <%= link_to "Create new category", new_category_path, class: "btn btn-primary border-0" %>
+        </div>
+    <% end %>  
+
 <div class="flickr_pagination">
   <%= will_paginate @categories, :container => false %>
 </div>

@@ -16,7 +16,7 @@ class ArticalesController < ApplicationController
   end
 
   def create
-    @articale = Articale.new(params.require(:articale).permit(:title, :description))
+    @articale = Articale.new(params.require(:articale).permit(:title, :description, category_ids: []))
     @articale.user = current_user
     if @articale.save
       flash[:notice] = 'Article was created successfully.'
@@ -30,7 +30,7 @@ class ArticalesController < ApplicationController
   end
 
   def update
-    if @articale.update(params.require(:articale).permit(:title, :description))
+    if @articale.update(params.require(:articale).permit(:title, :description, category_ids: []))
       flash[:notice] = 'Article was updated successfully.'
       redirect_to articale_path(@articale)
     else

@@ -10,4 +10,6 @@
 class Category < ApplicationRecord
   validates :name, presence: true, length: {minimum: 5, maximum: 30}
   validates_uniqueness_of :name
+  has_many :articale_categories
+  has_many :articales, through: :articale_categories
 end
